@@ -10,9 +10,9 @@ def vigenere():
 @app.route('/encrypt', methods=['POST'])
 def vigenere_encrypt():
     text = request.form['inputPlainText']
-    key = str(request.form['inputKeyCipher'])
+    key = str(request.form['inputKeyPlain'])
     Vigenere = VigenereCipher()
-    encrypt_text = VigenereCipher.vigenere_encrypt(text, key)
+    encrypt_text = Vigenere.vigenere_encrypt(text, key)
     return f"text: {text}<br/> key: {key}<br/> encrypted text: {encrypt_text}"
 
 @app.route('/decrypt', methods=['POST'])
@@ -20,7 +20,7 @@ def vigenere_decrypt():
     text = request.form['inputCipherText']
     key = str(request.form['inputKeyCipher'])
     Vigenere = VigenereCipher()
-    decrypted_text = Vigenere.decrypt(text, key)
+    decrypted_text = Vigenere.vigenere_decrypt(text, key)
     return f"text: {text}<br/> key: {key}<br/> decrypted text: {decrypted_text}"
 
 if __name__ == '__main__':
